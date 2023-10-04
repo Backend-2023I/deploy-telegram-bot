@@ -12,6 +12,8 @@ def main():
 
 @app.route("/webhook/", methods=["POST", "GET"])
 def webhook():
+    update = request.get_json()
+    print(update)
     chat_id = 5575549228
 
     bot = telegram.Bot(TOKEN)
