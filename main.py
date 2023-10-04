@@ -1,7 +1,7 @@
 import os 
 from flask import Flask, request
 
-TOKEN=os.environ["TOKEN"]
+# TOKEN=os.environ["TOKEN"]
 
 app = Flask(__name__)
 
