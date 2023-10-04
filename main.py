@@ -12,15 +12,20 @@ def main():
 
 @app.route("/webhook/", methods=["POST", "GET"])
 def webhook():
-    update = request.get_json()
-    print(update)
-    chat_id = 5575549228
 
-    bot = telegram.Bot(TOKEN)
+    if request.method == "POST":
+        update = request.get_json()
 
-    bot.sendMessage(chat_id, "Hi")
+        text = update['message']['text']
+        chat_id = update['message']['chat']['id']
 
-    return 'Ok'
+        bot = telegram.Bot(TOKEN)
+
+        bot.sendMessage(chat_id, text)
+
+        return 'Ok'
+    else:
+        return {"result": "Only post request"}
 
 if __name__ == "__main__":
     app.run(debug=True)
